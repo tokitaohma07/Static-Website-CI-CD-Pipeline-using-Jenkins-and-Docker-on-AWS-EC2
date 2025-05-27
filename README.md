@@ -21,3 +21,51 @@ AWS EC2 Ubuntu Instance
 3. Runs it on EC2 using nginx
 
 
+✅ Step-by-Step Guide
+
+**Step 1: Create a Static Website**
+Create a folder named static-website and add a simple index.html:
+
+**index.html**
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My DevOps Portfolio</title>
+</head>
+<body>
+  <h1>Welcome to My Portfolio</h1>
+  <p>This is deployed using Jenkins CI/CD pipeline.</p>
+</body>
+</html>
+
+
+**Step 2: Add a Dockerfile**
+This file will containerize your website using nginx.
+
+**Dockerfile**
+
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+
+
+**Step 3: Push Code to GitHub**
+Create a GitHub repo (e.g., devops-static-site)
+
+Push your project:
+
+```
+git init
+git remote add origin https://github.com/yourusername/devops-static-site.git
+git add .
+git commit -m "Initial commit: static site with Dockerfile"
+git push -u origin master
+[git pull origin master --rebase]
+[git push -u origin master]
+
+or
+
+[git push -u origin master --force]
+
+
+
