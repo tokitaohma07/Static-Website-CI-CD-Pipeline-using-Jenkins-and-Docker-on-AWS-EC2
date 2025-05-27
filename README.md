@@ -68,4 +68,68 @@ or
 [git push -u origin master --force]
 
 
+**Step 4: Set Up Jenkins & Docker on AWS EC2**
+Install Jenkins & Docker on your EC2 instance:
+
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install Java (needed for Jenkins)
+sudo apt install openjdk-11-jdk -y
+
+# Install Jenkins
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins -y
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+
+# Open port 8080 in EC2 security group
+
+# Install Docker
+sudo apt install docker.io -y
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+
+**Step 5: Create Jenkins Pipeline**
+Open Jenkins at http://<your-ec2-public-ip>:8080
+
+Install required plugins during setup
+
+Create a new Pipeline project
+
+Add this Jenkinsfile to your repo or use it directly in Jenkins:
+
+```
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/yourusername/devops-static-site.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build('my-static-site')
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    sh 'docker stop static-site || true'
+                    sh 'docker rm static-site || true'
+                    sh 'docker run -d --name static-site -p 80:80 my-static-site'
+                }
+            }
+        }
+    }
+}
 
