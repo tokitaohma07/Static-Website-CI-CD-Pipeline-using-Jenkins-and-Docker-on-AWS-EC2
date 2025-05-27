@@ -93,6 +93,23 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 
 
+**Login to jenkins again**
+
+Install the required plugins
+✅ Minimum Required Jenkins Plugins
+
+```
+| Plugin Name             | Purpose                                                      |
+| ----------------------- | ------------------------------------------------------------ |
+| **Git plugin**          | Allows Jenkins to pull code from GitHub                      |
+| **Pipeline**            | Enables Jenkins to use Declarative and Scripted pipelines    |
+| **Docker Pipeline**     | Required to run Docker commands in the pipeline              |
+| **Docker Commons**      | Shares Docker configuration between Jenkins and jobs         |
+| **Credentials Binding** | (Optional) Securely pass GitHub tokens or Docker credentials |
+| **AnsiColor**           | (Optional) Improves color display in console logs            |
+```
+
+
 **Step 5: Create Jenkins Pipeline**
 Open Jenkins at http://<your-ec2-public-ip>:8080
 
