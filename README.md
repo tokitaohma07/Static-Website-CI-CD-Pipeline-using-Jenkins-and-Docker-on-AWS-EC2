@@ -27,7 +27,7 @@ AWS EC2 Ubuntu Instance
 Create a folder named static-website and add a simple index.html:
 
 **index.html**
-
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,7 @@ Create a folder named static-website and add a simple index.html:
   <p>This is deployed using Jenkins CI/CD pipeline.</p>
 </body>
 </html>
-
+```
 
 **Step 2: Add a Dockerfile**
 This file will containerize your website using nginx.
@@ -66,7 +66,7 @@ git push -u origin master
 or
 
 [git push -u origin master --force]
-
+```
 
 **Step 4: Set Up Jenkins & Docker on AWS EC2**
 Install Jenkins & Docker on your EC2 instance:
@@ -132,4 +132,20 @@ pipeline {
         }
     }
 }
+```
 
+**🧪 Test It!**
+Visit http://<your-ec2-public-ip>
+
+You should see your static website!
+
+
+**📁 Final GitHub Structure**
+
+```
+static-website/
+├── index.html
+├── Dockerfile
+├── Jenkinsfile
+└── README.md
+```
