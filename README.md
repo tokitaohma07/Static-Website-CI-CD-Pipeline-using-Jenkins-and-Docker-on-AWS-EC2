@@ -97,10 +97,11 @@ sudo systemctl enable jenkins
 # Open port 8080 in EC2 security group
 
 # Install Docker
+```
 sudo apt install docker.io -y
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
-
+```
 
 **Login to jenkins again**
 
