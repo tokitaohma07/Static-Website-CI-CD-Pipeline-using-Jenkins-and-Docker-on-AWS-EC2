@@ -45,8 +45,10 @@ This file will containerize your website using nginx.
 
 **Dockerfile**
 
+```
 FROM nginx:alpine
 COPY index.html /usr/share/nginx/html/index.html
+```
 
 
 **Step 3: Push Code to GitHub**
