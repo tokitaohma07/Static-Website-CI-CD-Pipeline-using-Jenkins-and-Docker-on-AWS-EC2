@@ -74,18 +74,25 @@ or
 Install Jenkins & Docker on your EC2 instance:
 
 # Update system
+```
 sudo apt update && sudo apt upgrade -y
+```
 
 # Install Java (needed for Jenkins)
+```
 sudo apt install openjdk-11-jdk -y
+```
 
 # Install Jenkins
+
+```
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
 sudo apt install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
+```
 
 # Open port 8080 in EC2 security group
 
